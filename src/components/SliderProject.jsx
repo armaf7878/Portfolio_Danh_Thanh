@@ -1,75 +1,77 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function SliderProject({ onClose, image }) {
   const [count, setCount] = useState(0);
+  const touchStartX = useRef(0);
 
-  const handleIncrease = () => {
-    if (count + 1 < image.length) setCount((prev) => prev + 1);
+  const next = () => {
+    if (count + 1 < image.length) setCount((p) => p + 1);
   };
 
-  const handleDescrease = () => {
-    if (count > 0) setCount((prev) => prev - 1);
+  const prev = () => {
+    if (count > 0) setCount((p) => p - 1);
+  };
+
+  const onTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const onTouchEnd = (e) => {
+    const diff = e.changedTouches[0].clientX - touchStartX.current;
+    if (Math.abs(diff) < 50) return;
+    diff < 0 ? next() : prev();
   };
 
   useEffect(() => {
     const onKeyDown = (e) => {
-      if (e.key === "Escape") onClose?.();
-      if (e.key === "ArrowRight") handleIncrease();
-      if (e.key === "ArrowLeft") handleDescrease();
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
     };
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [count, image?.length, onClose]);
+  }, [count]);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => (document.body.style.overflow = "");
   }, []);
 
   return (
-    <div className="fixed inset-0 z-50">
-      <button
-        type="button"
-        className="absolute inset-0 bg-black/60"
-        aria-label="Close slider overlay"
-        onClick={() => onClose?.()}
-      />
-
-      <div classNaome="relative flex items-center justify-center w-full h-full max-w-6xl px-3 mx-auto md:px-6">
+    <div className="fixed inset-0 z-50 grid place-items-center bg-black/70">
+      <div
+        className="relative w-full max-w-6xl px-3 md:px-6 min-h-[100svh] grid place-items-center"
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      >
         <button
-          type="button"
-          className="px-3 py-1 border rounded-full abslute right-4 top-4 border-white/40 bg-p-900/60 font-Gothic text-n-50 hover:bg-p-900"
-          onClick={() => onClose?.()}
-          aria-label="Close"
+          onClick={onClose}
+          className="absolute z-10 px-3 py-1 border rounded-full top-4 right-4 border-white/40 bg-p-900/70 font-Gothic text-n-50"
         >
           x
         </button>
 
-        <div className="flex items-center justify-between w-full gap-3 md:gap-6">
+        <div className="flex items-center justify-center w-full">
+          <img
+            src={image[count]}
+            alt={`Slide ${count + 1}`}
+            className="max-h-[80svh] w-full md:w-[85%] object-contain rounded-2xl"
+          />
+        </div>
+
+        <div className="absolute inset-y-0 items-center justify-between hidden w-full px-4 md:flex">
           <button
-            type="button"
-            onClick={handleDescrease}
-            className="px-3 py-2 border-2 rounded-full shrink-0 border-p-450 font-Gothic text-n-200 hover:bg-p-900 disabled:opacity-40"
+            onClick={prev}
             disabled={count === 0}
+            className="px-3 py-2 border-2 rounded-full border-p-450 font-Gothic text-n-200 disabled:opacity-40"
           >
             Back
           </button>
 
-          <div className="flex justify-center w-full">
-            <img
-              src={image[count]}
-              alt={`Slide ${count + 1}`}
-              className="max-h-[80vh] w-full rounded-2xl object-contain md:w-[85%]"
-            />
-          </div>
-
           <button
-            type="button"
-            onClick={handleIncrease}
-            className="px-3 py-2 border-2 rounded-full shrink-0 border-p-450 font-Gothic text-n-200 hover:bg-p-900 disabled:opacity-40"
+            onClick={next}
             disabled={count + 1 >= image.length}
+            className="px-3 py-2 border-2 rounded-full border-p-450 font-Gothic text-n-200 disabled:opacity-40"
           >
             Next
           </button>
