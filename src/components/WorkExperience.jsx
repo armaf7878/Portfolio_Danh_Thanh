@@ -17,7 +17,7 @@ export default function WorkExperience(){
 
                         </img>
 
-                        <div >
+                        <div className="w-[70%]">
                             <h1 className="mb-4 text-xl font-Gothic text-n-50">
                                 Rescue Emergency Web
                             </h1>
@@ -39,7 +39,7 @@ export default function WorkExperience(){
 
                         </img>
 
-                        <div className="w-[50%]" >
+                        <div className="w-[70%]" >
                             <h1 className="mb-4 text-xl font-Gothic text-n-50">
                                 Food Ordering Web
                             </h1>
@@ -66,7 +66,7 @@ export default function WorkExperience(){
 
                         </img>
 
-                        <div >
+                        <div className="w-[70%]">
                             <h1 className="mb-4 text-xl font-Gothic text-n-50">
                                 Portfolio Web
                             </h1>
@@ -86,7 +86,7 @@ export default function WorkExperience(){
 
                         </img>
 
-                        <div >
+                        <div className="w-[70%]">
                             <h1 className="mb-4 text-xl font-Gothic text-n-50">
                                 Emotion Recognize App
                             </h1>
