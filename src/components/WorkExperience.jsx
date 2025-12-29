@@ -39,7 +39,7 @@ export default function WorkExperience(){
 
                         </img>
 
-                        <div >
+                        <div className="w-[50%]" >
                             <h1 className="mb-4 text-xl font-Gothic text-n-50">
                                 Food Ordering Web
                             </h1>
