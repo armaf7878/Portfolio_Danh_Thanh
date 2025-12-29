@@ -34,7 +34,7 @@ export default function WorkExperience(){
                         </div>
                     </div>
 
-                    <div className="hover:shadow-[0_0_20px_rgba(168,85,247,0.8)] md:p-4 p-2  w-full md:w-[49%] bg-linear-to-br from-p-500 to-p-700 rounded-2xl h-60 border-t-3 border-p-200 flex items-center justify-center">
+                    <div className="hover:shadow-[0_0_20px_rgba(168,85,247,0.8)] md:p-4  w-full md:w-[49%] bg-linear-to-br from-p-500 to-p-700 rounded-2xl h-60 border-t-3 border-p-200 flex items-center justify-center">
                         <img src={food_logo} className="object-contain w-[50%] h-[50%] mr-4">
 
                         </img>
@@ -45,7 +45,7 @@ export default function WorkExperience(){
                             </h1>
 
                             <p className="mb-4 text-sm font-light font-Gothic text-n-50">
-                               Real-time fast food ordering and delivery platform with smart tracking.
+                                Real-time fast food ordering and delivery platform with smart tracking.
                             </p>
 
                             <button className="p-2 font-light border-2 cursor-pointer hover:bg-n-50 hover:text-p-900 border-n-50 rounded-2xl text-n-50 font-Gothic"
@@ -55,6 +55,8 @@ export default function WorkExperience(){
                             </button>
                         </div>
                     </div>
+
+                   
                 </div>
 
               
