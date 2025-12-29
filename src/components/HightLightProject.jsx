@@ -55,14 +55,15 @@ export default function HightLightProject() {
   const [fastfoodClicked, setfastfoodClicked] = useState(false);
   const [recognizeClicked, setRecognizeClicked] = useState(false);
 
-  const ProjectBlock = ({ id, title, desc, image, reverse, onOpen }) => (
+  const ProjectBlock = ({ id, title, desc, image, github, reverse, onOpen }) => (
     <div id={id} className="grid items-center grid-cols-1 gap-6 pb-12 md:grid-cols-2 ">
       <div className={`${reverse ? "md:order-2" : ""}`}>
         <h2 className="pb-4 text-xl font-light font-Gothic text-n-50">{title}</h2>
-        <div className="w-full">
-          <p className="w-full rounded-2xl bg-radial from-p-450 via-p-500/30 to-p-900 p-4 font-Gothic text-sm font-extralight text-n-50 hover:shadow-[0_0_20px_rgba(168,85,247,0.8)] md:text-base">
+        <div className="w-full rounded-2xl bg-radial from-p-450 via-p-500/30 to-p-900 p-4 font-Gothic text-sm font-extralight text-n-50 hover:shadow-[0_0_20px_rgba(168,85,247,0.8)] md:text-base">
+          <p className="mb-4">
             {desc}
           </p>
+          <a className="px-4 py-2 border rounded-2xl" href={github} target="_blank">GitHub</a>
         </div>
       </div>
 
@@ -91,6 +92,7 @@ export default function HightLightProject() {
           id="rescue_web"
           title="Rescue Emergency Web"
           image={gofix_main}
+          github="https://github.com/armaf7878/go_fixed_project.git"
           onOpen={() => setrescueClicked(true)}
           desc={
             <>
@@ -138,6 +140,7 @@ export default function HightLightProject() {
         <ProjectBlock
           id="food_ordering"
           title="Food Ordering Web"
+          github="https://github.com/armaf7878/Fast_Food_Website"
           image={fastfood_main}
           reverse
           onOpen={() => setfastfoodClicked(true)}
@@ -186,6 +189,7 @@ export default function HightLightProject() {
         <ProjectBlock
           id="emotion_recognize"
           title="Emotion Recognize App"
+          github="https://github.com/armaf7878/emotion_recognize_app"
           image={emotion_main}
           onOpen={() => setRecognizeClicked(true)}
           desc={
